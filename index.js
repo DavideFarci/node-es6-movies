@@ -36,3 +36,19 @@ class SerieTv extends Movie {
     return `${this.title} è una serie tv di genere ${this.genre}. La prima stagione è stata rilasciato nel ${this.year} ed in totale sono state prodotte ${this.seasons} stagioni. Ha un voto di ${this.rating}`;
   }
 }
+
+const newArr = arrMovies.map((el) => {
+  if (el.type === "movie") {
+    return new Movie(el.title, el.year, el.genre, el.rating, el.type);
+  } else {
+    return new SerieTv(
+      el.title,
+      el.year,
+      el.genre,
+      el.rating,
+      el.type,
+      el.seasons
+    );
+  }
+});
+console.log(newArr);
