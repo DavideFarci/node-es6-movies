@@ -1,3 +1,4 @@
+const { elements } = require("chart.js");
 const data = require("./data");
 const arrMovies = data.movieSerie;
 
@@ -64,7 +65,6 @@ const newArr = arrMovies.map((el) => {
     );
   }
 });
-// console.log(newArr);
 
 // Creiamo una funzione che restituisca la media dei voti di tutti i film per un determinato genere. Prevedere un argomento per la lista dei film ed uno per il genere.
 
@@ -76,9 +76,6 @@ function averageGenreRating(array, genre) {
   const avg = sum / arrSameGenre.length;
   return avg;
 }
-
-// const avg = averageGenreRating(newArr, "drammatico");
-// console.log(avg);
 
 // Creiamo una funzione che restituisca la lista di tutti i generi dei film, senza che questi si ripetano.
 
@@ -93,6 +90,29 @@ function genresList(array) {
   return arrGenres;
 }
 
-console.log(genresList(newArr));
-
 // Creiamo una funzione che filtri i film in base ad un genere passato come argomento e ne ritorni un array con all’interno il risultato della funzione toString() di ogni film.
+
+function filterByGenre(genre) {
+  const filteredByGenre = newArr.filter((el) => el.genre === genre);
+  // console.log(filteredByGenre);
+  const arrStrings = [];
+  for (let i = 0; i < filteredByGenre.length; i++) {
+    const element = filteredByGenre[i].toString();
+    arrStrings.push(element);
+  }
+  return arrStrings;
+}
+
+// Eseguire tutto il codice da terminale tramite NodeJs e stampiamo nel terminale il risultato delle varie funzioni.
+
+console.log(newArr);
+
+const avg = averageGenreRating(newArr, "drammatico");
+console.log("La media dei rating per il genere selezionato è: " + avg);
+
+console.log("La lista di tutti i generi è la seguente: " + genresList(newArr));
+
+console.log(
+  "La lista di tutti i metodi toString per il genere selezionato è la seguente: " +
+    filterByGenre("drammatico")
+);
