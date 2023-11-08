@@ -1,3 +1,6 @@
+const data = require("./data");
+const arrMovies = data.movieSerie;
+
 class Movie {
   title;
   year;
