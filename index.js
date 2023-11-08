@@ -14,11 +14,11 @@ const arrMovies = data.movieSerie;
 // Breaking Bad è una serie tv di genere Drama. La prima stagione è stata rilasciato nel 2008 ed in totale sono state prodotte 5 stagioni. Ha un voto di 9.5
 
 class Movie {
-  title;
-  year;
-  genre;
-  rating;
-  type;
+  #title;
+  #year;
+  #genre;
+  #rating;
+  #type;
 
   constructor(title, year, genre, rating, type) {
     this.title = title;
@@ -28,6 +28,63 @@ class Movie {
     this.type = type;
   }
 
+  // GETTERS -- -- -- -- -- --
+  get title() {
+    return this.#title;
+  }
+  get year() {
+    return this.#year;
+  }
+  get genre() {
+    return this.#genre;
+  }
+  get rating() {
+    return this.#rating;
+  }
+  get type() {
+    return this.#type;
+  }
+
+  // SETTERS -- -- -- -- -- --
+  set title(value) {
+    if (!value || !value.trim()) {
+      throw new Error("Title is required");
+    }
+
+    this.#title = value.toLowerCase();
+  }
+
+  set year(value) {
+    if (value.toString().length < 4) {
+      throw new Error("Year must be 4 digits");
+    }
+
+    this.#year = +value;
+  }
+
+  set genre(value) {
+    if (!value || !value.trim()) {
+      throw new Error("Genre is required");
+    }
+
+    this.#genre = value.toLowerCase();
+  }
+
+  set rating(value) {
+    this.#rating = +value;
+  }
+
+  /**
+   * @param {"movie"|"serieTv"} value
+   */
+  set type(value) {
+    if (!value || !value.trim()) {
+      throw new Error("Type is required");
+    }
+
+    this.#type = value.toLowerCase();
+  }
+
   // FUNCTIONS -- -- -- -- -- --
   toString() {
     return `${this.title} è un film di genere ${this.genre}. E’ stato rilasciato nel ${this.year} ed ha un voto di ${this.rating}`;
@@ -35,12 +92,24 @@ class Movie {
 }
 
 class SerieTv extends Movie {
-  seasons;
+  #seasons;
 
   constructor(title, year, genre, rating, type, seasons) {
     super(title, year, genre, rating, type);
 
     this.seasons = seasons;
+  }
+
+  // GETTERS -- -- -- -- -- --
+
+  get seasons() {
+    return this.#seasons;
+  }
+
+  // SETTERS -- -- -- -- -- --
+
+  set seasons(value) {
+    this.#seasons = +value;
   }
 
   // FUNCTIONS -- -- -- -- -- --
@@ -53,7 +122,7 @@ class SerieTv extends Movie {
 
 const newArr = arrMovies.map((el) => {
   if (el.type === "movie") {
-    return new Movie(el.title, el.year, el.genre, el.rating, el.type);
+    return new Movie(el.set, el.year, el.genre, el.rating, el.type);
   } else {
     return new SerieTv(
       el.title,
