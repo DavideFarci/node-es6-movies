@@ -1,0 +1,14 @@
+{
+  "name": "es6-movies",
+  "version": "1.0.0",
+  "description": "movie serietv node map",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon movie.js"
+  },
+  "author": "Davide Farci",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
