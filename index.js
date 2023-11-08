@@ -1,4 +1,3 @@
-const { elements } = require("chart.js");
 const data = require("./data");
 const arrMovies = data.movieSerie;
 
